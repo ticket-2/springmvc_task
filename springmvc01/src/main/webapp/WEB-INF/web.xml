@@ -1,0 +1,31 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <!-- 定义springMVC的前端控制器(相当于一个servlet) -->
+  <servlet>
+    <!-- springMVC 控制器配置 -->
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>	   <!-- 为spring核心文件起一个别名，可任意起 -->
+      <!--<param-value>/WEB-INF/spring-servlet.xml</param-value> &lt;!&ndash; 指定spring的核心配置文件的位置 &ndash;&gt;-->
+      <!--<param-value>classpath:spring-servlet.xml</param-value> &lt;!&ndash; 指定spring的核心配置文件的位置 ,需要放在resources下才行&ndash;&gt;-->
+      <param-value>/WEB-INF/spring-servlet.xml</param-value><!--需要放在指定位置/WEB-INF/-->
+  </init-param>
+  <load-on-startup>1</load-on-startup>				   <!-- 设置启动服务器后马上进行配置 -->
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>           <!-- 控制器的别名，要与上面的<servlet-name>一样-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
